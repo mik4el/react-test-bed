@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import VisibilitySensor from 'react-visibility-sensor';
 
 function formatName(user) {
   return user.firstName + ' ' + user.lastName;
@@ -108,6 +109,11 @@ class Form extends React.Component {
         this.state = {value: ""};
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onChange = this.onChange.bind(this);
+    }
+
+    onChange(isVisible) {
+        console.log('Element is now %s', isVisible ? 'visible' : 'hidden');
     }
 
     handleChange(event) {
@@ -126,6 +132,7 @@ class Form extends React.Component {
                        value={this.state.value}
                        onChange={this.handleChange} />
                 <button onClick={this.handleSubmit}>Submit</button>
+                <VisibilitySensor onChange={this.onChange} />
             </div>
         );
     }
@@ -359,7 +366,7 @@ var PRODUCTS = [
 
 class App extends Component {
 
-  render() {
+    render() {
     return (
       <div className="App">
         <div className="App-header">
